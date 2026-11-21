@@ -13,6 +13,7 @@ import { drawWorld, drawTitle, SCREEN_TITLE, SCREEN_PLAY } from './render.js';
 import { drawHUD } from './hud.js';
 import { STEP, WORLD_SIZE } from './config.js';
 import { setupShot } from './shots.js';
+import { saveGame, loadGame } from './save.js';
 
 let state = {
     screen: SCREEN_PLAY,
@@ -38,8 +39,23 @@ function boot() {
     const params = new URLSearchParams(window.location.search);
     if (params.has('shot')) {
         setupShot(params.get('shot'), 12345, state);
-        state.camera.x = Math.max(0, Math.min(state.player.x - 640, WORLD_SIZE - 1280));
-        state.camera.y = Math.max(0, Math.min(state.player.y - 360, WORLD_SIZE - 720));
+    } else {
+        const savedData = loadGame();
+        if (savedData) {
+            state.player.x = savedData.player.x;
+            state.player.y = savedData.player.y;
+            state.player.health = savedData.player.health;
+            state.player.cash = savedData.player.cash;
+            state.police.stars = savedData.police.stars;
+            state.police.heat = savedData.police.heat;
+            state.mission.completedCount = savedData.mission.completedCount;
+        }
+        setInterval(() => saveGame(state), 10000);
+    }
+
+    state.camera.x = Math.max(0, Math.min(state.player.x - 640, WORLD_SIZE - 1280));
+    state.camera.y = Math.max(0, Math.min(state.player.y - 360, WORLD_SIZE - 720));
+    if (params.has('shot')) {
         render();
         window.__shotReady = true;
     }
