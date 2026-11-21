@@ -1,18 +1,22 @@
 [
   {
     "name": "1-title.jpg",
-    "query": "?shot=title&seed=7"
+    "query": "?shot=title&seed=7",
+    "desc": "The game's main title screen with the logo."
   },
   {
     "name": "2-street.jpg",
-    "query": "?shot=street&seed=7"
+    "query": "?shot=street&seed=7",
+    "desc": "A busy city street scene with pedestrians walking."
   },
   {
     "name": "3-drive.jpg",
-    "query": "?shot=drive&seed=7"
+    "query": "?shot=drive&seed=7",
+    "desc": "A car driving through light traffic on a sunny day."
   },
   {
     "name": "4-chase.jpg",
-    "query": "?shot=chase&seed=7"
+    "query": "?shot=chase&seed=7",
+    "desc": "A high-speed police chase through a downtown intersection."
   }
 ]
