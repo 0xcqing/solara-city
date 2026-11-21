@@ -1,61 +1,66 @@
-// Every tuning number and colour in one place. The playfield is a fixed 1280x720 logical area;
-// the renderer scales it to the window, so no rule below depends on the screen size.
+// SOLARA CITY - Configuration and Tunables
+// All tunables and the golden-hour palette in one place.
 
-export const FIELD = { width: 1280, height: 720, groundY: 664 };
+export const TILE_SIZE = 48;
+export const CITY_SIZE = 140; // 140x140 tiles
+export const WORLD_SIZE = CITY_SIZE * TILE_SIZE;
 
-/** The simulation's fixed step, in seconds: 60 updates a second whatever the display's rate. */
-export const STEP = 1 / 60;
-
-export const PLAYER = {
-  width: 72,
-  height: 24,
-  speed: 560,
-  invulnerable: 1.5,
-};
-
-export const LIVES = 3;
-
-export const BLOCK = {
-  minWidth: 40,
-  maxWidth: 110,
-  height: 36,
-  speed: 240,
-  speedPerLevel: 30,
-  speedJitter: 90,
-  interval: 0.55,
-  intervalScale: 0.88,
-  minInterval: 0.14,
-  dodgePoints: 1,
-};
-
-export const COIN = {
-  size: 24,
-  speed: 190,
-  speedPerLevel: 14,
-  interval: 1.4,
-  intervalJitter: 0.8,
-  points: 10,
-};
-
-/** Seconds of play per level, and the last level: speeds and spawn rates stop growing there. */
-export const LEVEL = { seconds: 12, max: 12 };
-
-/** How many falling things can exist at once; the pool is allocated once, at boot. */
-export const POOL_SIZE = 64;
+export const STEP = 1 / 60; // 60 FPS fixed step
 
 export const PALETTE = {
-  backdrop: '#11141b',
-  sky: '#1b1f2a',
-  ground: '#2a3040',
-  player: '#4fc3f7',
-  block: '#e5534b',
-  coin: '#f2c94c',
-  panel: '#252b38',
-  text: '#eef1f5',
-  muted: '#8b93a3',
+    sky: '#ffb366',
+    sun: '#ff8c00',
+    water: '#2b65ec',
+    sand: '#edc9af',
+    grass: '#7fb34b',
+    road: '#4a4a4a',
+    sidewalk: '#9a9a9a',
+    building: '#d2b48c',
+    buildingWall: '#8b7355',
+    roof: '#c19a6b',
+    shadow: 'rgba(0, 0, 0, 0.3)',
+    text: '#ffffff',
+    hudBg: 'rgba(0, 0, 0, 0.6)',
+    health: '#ff4b4b',
+    armor: '#4b4bff',
+    cash: '#4bff4b',
+    wanted: '#ffff00',
+    marker: '#ffff00',
+    player: '#ffffff',
+    ped: '#ffebcd',
+    police: '#2f4f4f',
+    blood: '#8b0000',
+    fire: '#ff4500',
+    smoke: '#696969',
 };
 
-export const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
+export const PLAYER = {
+    walkSpeed: 180,
+    sprintSpeed: 320,
+    rotateSpeed: 10,
+    radius: 12,
+};
 
-/** Where the best score is kept between visits (this browser only). */
-export const BEST_KEY = 'block-dodger.best';
+export const VEHICLE_TYPES = [
+    { name: 'Sunchaser', color: '#e74c3c', speed: 450, accel: 3.5, length: 60, width: 30 },
+    { name: 'Vanta', color: '#2c3e50', speed: 400, accel: 3.0, length: 64, width: 32 },
+    { name: 'Mule', color: '#95a5a6', speed: 300, accel: 2.0, length: 80, width: 40 },
+    { name: 'Solara GT', color: '#f1c40f', speed: 550, accel: 5.0, length: 60, width: 30 },
+    { name: 'Taxi', color: '#f39c12', speed: 380, accel: 3.0, length: 64, width: 32 },
+    { name: 'Police Cruiser', color: '#34495e', speed: 500, accel: 4.5, length: 64, width: 32 },
+    { name: 'Cabrio', color: '#e67e22', speed: 420, accel: 3.2, length: 60, width: 30 },
+    { name: 'Stallion', color: '#bdc3c7', speed: 480, accel: 4.0, length: 64, width: 32 },
+    { name: 'Boxer van', color: '#7f8c8d', speed: 280, accel: 1.8, length: 70, width: 35 },
+    { name: 'Rimini coupe', color: '#9b59b6', speed: 520, accel: 4.2, length: 60, width: 30 },
+];
+
+export const DISTRICTS = {
+    DOWNTOWN: { name: 'Downtown', color: '#a0a0a0' },
+    OLD_TOWN: { name: 'Old Town', color: '#c2b280' },
+    VELA_BEACH: { name: 'Vela Beach', color: '#edc9af' },
+    HARBOR: { name: 'Harbor', color: '#708090' },
+    SUNVIEW_HEIGHTS: { name: 'Sunview Heights', color: '#90ee90' },
+    MIRADOR_PARK: { name: 'Mirador Park', color: '#228b22' },
+};
+
+export const SAVE_KEY = 'solara-city-save';
